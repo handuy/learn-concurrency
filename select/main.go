@@ -8,7 +8,7 @@ import (
 
 // googleSearch
 func googleSearch(result chan string) {
-	time.Sleep(1 * time.Second)
+	time.Sleep(5 * time.Second)
 	result <- "found from Google"
 }
 
@@ -29,6 +29,8 @@ func main() {
 		log.Println(result)
 	case result := <-chanBing:
 		log.Println(result)
+	case <-time.After(4 * time.Second):
+		log.Println("tired of waiting")
 	}
 
 	log.Println("finished main")
